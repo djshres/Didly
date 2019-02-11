@@ -1,8 +1,30 @@
-﻿@model Didly.Models.Movie
+﻿@model IEnumerable<Didly.Models.Movie>
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@Model.Name</h2>
-
+<h2>List of Movies</h2>
+@if (!Model.Any())
+{
+    <p>Movies not avaialble</p>
+}
+else
+{
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th> Movies</th>
+       
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var movie in Model)
+        {
+            <tr>
+              <td>@Html.ActionLink(movie.Name,"Details","Movies",new { id=movie.Id},null)</td>
+            </tr>
+        }
+    </tbody>
+</table>
+}

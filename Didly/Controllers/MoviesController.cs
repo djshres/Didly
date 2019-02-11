@@ -12,11 +12,26 @@ namespace Didly.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            var movie = new Movie()
-            {
-                Name = "Titanic!"
-            };
+            var movie = GetMovies();
             return View(movie);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var movies = GetMovies().SingleOrDefault(m => m.Id == id);
+            if (movies == null)
+                return HttpNotFound();
+            return View(movies);
+
+        }
+
+        public IEnumerable<Movie> GetMovies()
+        {
+            return new List<Movie>
+            {
+                new Movie{Id=1,Name="Titanic"},
+                new Movie{Id=2,Name="Avatar"}
+            };
         }
     }
 }
