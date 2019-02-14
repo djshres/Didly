@@ -1,5 +1,5 @@
 ﻿using Didly.Models;
-using System;
+using System.Data.Entity;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -23,13 +23,13 @@ namespace Didly.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            var movie = _context.Movies.ToList();
+            var movie = _context.Movies.Include(m=>m.Genre).ToList();
             return View(movie);
         }
 
         public ActionResult Details(int id)
         {
-            var movies = _context.Movies.SingleOrDefault(m => m.Id == id);
+            var movies = _context.Movies.Include(m => m.Genre).SingleOrDefault(m => m.Id == id);
             if (movies == null)
                 return HttpNotFound();
             return View(movies);

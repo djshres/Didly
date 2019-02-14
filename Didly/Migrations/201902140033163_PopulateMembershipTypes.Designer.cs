@@ -7,13 +7,13 @@ namespace Didly.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class AddedCustomerAndMovieModel : IMigrationMetadata
+    public sealed partial class PopulateMembershipTypes : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(AddedCustomerAndMovieModel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(PopulateMembershipTypes));
         
         string IMigrationMetadata.Id
         {
-            get { return "201902120610256_AddedCustomerAndMovieModel"; }
+            get { return "201902140033163_PopulateMembershipTypes"; }
         }
         
         string IMigrationMetadata.Source
