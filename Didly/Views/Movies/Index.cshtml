@@ -3,31 +3,35 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 <h2>List of Movies</h2>
+<p>
+@Html.ActionLink("New Movie", "Create", "Movies", null, new { @class = "btn btn-primary" })
+</p>
+
 @if (!Model.Any())
 {
     <p>Movies not avaialble</p>
 }
 else
 {
-<table class="table table-bordered table-hover">
-    <thead>
-        <tr>
-            <th> Movies</th>
-            <th>Genre</th>
-       
-        </tr>
-    </thead>
-    <tbody>
-        @foreach(var movie in Model)
-        {
-        <tr>
-            <td>@Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)</td>
-            <td>@movie.Genre.Name</td>
-        </tr>
-        }
-        
-    </tbody>
-</table>
+
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th> Movies</th>
+                <th>Genre</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var movie in Model)
+            {
+                <tr>
+                    <td>@Html.ActionLink(movie.Name, "Details", "Movies", new { id = movie.Id }, null)</td>
+                    <td>@movie.Genre.Name</td>
+                </tr>
+            }
+
+        </tbody>
+    </table>
 }

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Didly.ViewModels;
+using System;
 
 namespace Didly.Controllers
 {
@@ -25,6 +27,29 @@ namespace Didly.Controllers
         {
             var movie = _context.Movies.Include(m=>m.Genre).ToList();
             return View(movie);
+        }
+
+        public ActionResult Create()
+        {
+            var movie = new MovieFormViewModel()
+            {
+                Genres = _context.Genres.ToList()
+            };
+            return View(movie);
+        }
+        [HttpPost]
+        public ActionResult Create(Movie movie)
+        {
+            movie.DateAdded = DateTime.Now;
+            _context.Movies.Add(movie);
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        public ActionResult New()
+        {
+            return View();
         }
 
         public ActionResult Details(int id)

@@ -14,9 +14,10 @@ namespace Didly.Models
         public string Name { get; set; }
         public DateTime ReleaseDate { get; set; }
         public DateTime DateAdded { get; set; }
+        [Display(Name="Number In Stock")]
         public byte NumberInstock { get; set; }
+        [Display(Name="Genre")]
         public byte GenreId { get; set; }
-        [Required]
         public Genre Genre { get; set; }
     }
 }
