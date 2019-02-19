@@ -34,14 +34,27 @@ namespace Didly.Controllers
             var membershiptype = _context.MembershipTypes.ToList();
             var viewmodel = new CustomerFormViewModel
             {
+                Customer = new Customer(),
                 MembershipTypes=membershiptype
             };
             return View("CustomerForm",viewmodel);
         }
 
+        [ValidateAntiForgeryToken]
         [HttpPost]
         public ActionResult Save(Customer customer)
         {
+            if(!ModelState.IsValid)
+            {
+                var membershiptype = _context.MembershipTypes.ToList();
+                var viewmodel = new CustomerFormViewModel
+                {
+                    Customer = customer,
+                    MembershipTypes = membershiptype
+                };
+                return View("CustomerForm", viewmodel);
+            }
+
             if(customer.Id==0)
             _context.Customers.Add(customer);
             else

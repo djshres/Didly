@@ -25,7 +25,7 @@ namespace Didly.Controllers
         // GET: Movies
         public ActionResult Index()
         {
-            var movie = _context.Movies.Include(m=>m.Genre).ToList();
+            var movie = _context.Movies.Include(m => m.Genre).ToList();
             return View(movie);
         }
 
@@ -44,13 +44,36 @@ namespace Didly.Controllers
             _context.Movies.Add(movie);
             _context.SaveChanges();
 
+            return RedirectToAction("Index", "Movies");
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var movie = _context.Movies.SingleOrDefault(c => c.Id == id);
+            if (movie == null)
+                HttpNotFound();
+            var movies = new MovieFormViewModel()
+            {
+                Movie = movie,
+                Genres = _context.Genres.ToList()
+            };
+            return View(movies);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(Movie movie)
+        {
+            var movieInDb = _context.Movies.Single(m => m.Id == movie.Id);
+
+            movieInDb.Name = movie.Name;
+            movieInDb.ReleaseDate = movie.ReleaseDate;
+            movieInDb.GenreId = movie.GenreId;
+            movieInDb.NumberInstock = movie.NumberInstock;
+            _context.SaveChanges();
+
             return RedirectToAction("Index");
         }
 
-        public ActionResult New()
-        {
-            return View();
-        }
 
         public ActionResult Details(int id)
         {
@@ -60,7 +83,17 @@ namespace Didly.Controllers
             return View(movies);
 
         }
-
+        public ActionResult Delete(int id)
+        {
+            var movies = _context.Movies.Single(m => m.Id == id);
+            if (movies == null)
+                return HttpNotFound();
+            _context.Movies.Remove(movies);
+            _context.SaveChanges();
+                return RedirectToAction("Index");
+           
+        }
        
+
     }
 }

@@ -1,0 +1,12 @@
+﻿@model Didly.ViewModels.MovieFormViewModel
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Delete Movie</h2>
+<p>Do you really want to delete @Model.Movie.Name</p>
+<p>
+    @Html.ActionLink("Delete Movie", "Delete", "Movies", null, new { @class = "btn btn-primary" })
+</p>
+
