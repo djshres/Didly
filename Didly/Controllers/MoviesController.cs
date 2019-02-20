@@ -40,6 +40,15 @@ namespace Didly.Controllers
         [HttpPost]
         public ActionResult Create(Movie movie)
         {
+            if(!ModelState.IsValid)
+            {
+                var viewmodel = new MovieFormViewModel()
+                {
+                    Movie=movie,
+                    Genres = _context.Genres.ToList()
+                };
+                return View(viewmodel);
+            }
             movie.DateAdded = DateTime.Now;
             _context.Movies.Add(movie);
             _context.SaveChanges();
