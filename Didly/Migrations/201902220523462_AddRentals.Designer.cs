@@ -7,13 +7,13 @@ namespace Didly.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class SeedUsers : IMigrationMetadata
+    public sealed partial class AddRentals : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(SeedUsers));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(AddRentals));
         
         string IMigrationMetadata.Id
         {
-            get { return "201902210734127_SeedUsers"; }
+            get { return "201902220523462_AddRentals"; }
         }
         
         string IMigrationMetadata.Source

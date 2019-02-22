@@ -19,5 +19,7 @@ namespace Didly.Models
         [Display(Name="Genre")]
         public byte GenreId { get; set; }
         public Genre Genre { get; set; }
+
+        public byte  NumberAvailable { get; set; }
     }
 }

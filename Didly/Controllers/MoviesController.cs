@@ -9,6 +9,7 @@ using System;
 
 namespace Didly.Controllers
 {
+    [AllowAnonymous]
     public class MoviesController : Controller
     {
         private readonly ApplicationDbContext _context;

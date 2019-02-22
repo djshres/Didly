@@ -8,6 +8,7 @@ using Didly.ViewModels;
 
 namespace Didly.Controllers
 {
+    [AllowAnonymous]
     public class CustomersController : Controller
     {
         private readonly ApplicationDbContext _context;
